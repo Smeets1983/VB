@@ -1,0 +1,17 @@
+
+
+
+ 
+<?php
+
+//Andere manier van verbinden om de dropdowns te creeren
+
+ $mysqlserver="localhost";
+            $mysqlusername="root";
+            $mysqlpassword="";
+            $link=mysql_connect(localhost, $mysqlusername, $mysqlpassword) or die ("Error connecting to mysql server: ".mysql_error());
+            
+            $dbname = 'vriendenboek';
+            mysql_select_db($dbname, $link) or die ("Error selecting specified database on mysql server: ".mysql_error());
+
+?>
