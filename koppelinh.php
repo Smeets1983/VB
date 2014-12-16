@@ -22,9 +22,7 @@ $sql = "SELECT * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnummer=vriend
 
 		
 
-			echo "<tr></td><td>".$record["voornaam"]."</td><td>". $record["achternaam"];
-
-		}
+	
 
 
 $sql = "SELECT * FROM auto,koppeltabel WHERE auto.auto_id=koppeltabel.auto_id";
@@ -49,7 +47,12 @@ echo "<form action='toonauto.php' method='POST' target='_blank'>";
 			echo "<td><input type='image' name='toonfoto' src='$fotopad' alt='Submit' style='height:75px' title='$fotonaam'/></td><td>";
 			
 
+			echo "<tr></td><td>".$record["voornaam"]."</td><td>". $record["achternaam"]	;
+
+
 			echo "</form>";	
+
+}
 }
 
 
