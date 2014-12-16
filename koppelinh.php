@@ -1,9 +1,5 @@
 
-
-
-
 <table><th><h4>Voornaam</th><th><h4>Achternaam</th>
-
 
 <?php
 include("connectDB.php");
@@ -11,7 +7,7 @@ include("connectDB.php");
 include_once "forms/header.html";
 
 
-$sql = "SELECT DISTINCT  * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnummer=vrienden.vriendnummer GROUP BY voornaam";
+$sql = "SELECT * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnummer=vrienden.vriendnummer GROUP BY voornaam";
 
 
 		$result = mysqli_query($conn, $sql) or die("Query ERROR: " . mysqli_error($conn) );
@@ -20,11 +16,9 @@ $sql = "SELECT DISTINCT  * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnum
 		while ( $record = mysqli_fetch_array($result) ) {
 			// read values of "Koppeltabel" record
 			
-
 			
 			$voornaam = $record["voornaam"];
-	
-	$achternaam = $record["achternaam"];
+			$achternaam = $record["achternaam"];
 
 		
 
@@ -33,8 +27,7 @@ $sql = "SELECT DISTINCT  * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnum
 		}
 
 
-
-$sql = "SELECT * FROM auto,koppeltabel WHERE koppeltabel.auto_id=auto.auto_id";
+$sql = "SELECT * FROM auto,koppeltabel WHERE auto.auto_id=koppeltabel.auto_id";
 
 
 		$result = mysqli_query($conn, $sql) or die("Query ERROR: " . mysqli_error($conn) );
@@ -47,10 +40,9 @@ $sql = "SELECT * FROM auto,koppeltabel WHERE koppeltabel.auto_id=auto.auto_id";
 			
 echo "<form action='toonauto.php' method='POST' target='_blank'>";
 		
-
+			$auto_id = $record["auto_id"];
 			$fotopad = $record["fotopad"];
 			$fotonaam = $record["fotonaam"];
-		
 			$merk = $record["merk"];
 
 			echo "<input type='hidden' name='toonfoto' value='$auto_id'>";
@@ -59,16 +51,6 @@ echo "<form action='toonauto.php' method='POST' target='_blank'>";
 
 			echo "</form>";	
 }
-
-
-
-
-
-
-
-		
-
-
 
 
 ?>
