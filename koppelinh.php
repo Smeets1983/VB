@@ -20,9 +20,6 @@ $sql = "SELECT * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnummer=vriend
 			$voornaam = $record["voornaam"];
 			$achternaam = $record["achternaam"];
 
-		
-
-	
 
 
 $sql = "SELECT * FROM auto,koppeltabel WHERE auto.auto_id=koppeltabel.auto_id";
@@ -35,24 +32,33 @@ $sql = "SELECT * FROM auto,koppeltabel WHERE auto.auto_id=koppeltabel.auto_id";
 			// read values of "Koppeltabel" record
 
 
-			
-echo "<form action='toonauto.php' method='POST' target='_blank'>";
+
 		
 			$auto_id = $record["auto_id"];
 			$fotopad = $record["fotopad"];
 			$fotonaam = $record["fotonaam"];
 			$merk = $record["merk"];
 
-			echo "<input type='hidden' name='toonfoto' value='$auto_id'>";
+			
+			echo "<form action='toonauto.php' method='POST' target='_blank'>";
+			echo "<tr>";
+			echo "<td>".$record["voornaam"]."</td><td>". $record["achternaam"]."</td>";
+
+
+
+			echo "<td><input type='hidden' name='toonfoto' value='$auto_id'></td>";
 			echo "<td><input type='image' name='toonfoto' src='$fotopad' alt='Submit' style='height:75px' title='$fotonaam'/></td><td>";
 			
 
-			echo "<tr></td><td>".$record["voornaam"]."</td><td>". $record["achternaam"]	;
+		
+
+
 
 
 			echo "</form>";	
 
 }
+
 }
 
 
@@ -61,3 +67,19 @@ echo "<form action='toonauto.php' method='POST' target='_blank'>";
 
 </table>
 
+<!--
+
+			// show table entry
+			echo "<form action='' method='POST'>";
+				echo "<tr>";
+				echo "<input type='hidden' name='id' value='$id'>";
+				echo "<td>$id</td>";
+				echo "<td><input type='submit' name='CMS_DELETE' value='Verwijderen'></td>";
+				echo "<td>$naamMuziekinstrument</td><td><img src='$fotoMuziekinstrument' alt='$foto' title='$naamMuziekinstrument'></td>";
+				echo "<td><img src='$fotoVriend' alt='$foto' title='$naamVriend'></td>";
+				echo "</tr>";
+			echo "</form>";
+		}
+		echo "</table>";
+
+		include 'SQLdisconnect.php'; // sluit database
