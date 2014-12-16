@@ -1,4 +1,7 @@
 <?php
+include_once "session.php";
+?>
+<?php
 //Haal header op
 include_once "forms/header.html";
 ?>
@@ -38,4 +41,5 @@ include_once "forms/header.html";
 <?php
 //haal footer op
 include_once "forms/footer.html";
+
 ?>

@@ -8,6 +8,7 @@
   
 }
 
+if (isset($_FILES["foto"])) {
 
         //Waar worden de fotoś gepplaatst?
         $foto = $_FILES["foto"]["name"];	
@@ -19,5 +20,6 @@
         else {      
         move_uploaded_file($_FILES["foto"]["tmp_name"],$padnaam);      
         echo "Stored in: " . $padnaam; 
+    }
 }
 ?>

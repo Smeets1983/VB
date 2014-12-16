@@ -25,14 +25,14 @@ $ssql = "SELECT * FROM auto,koppeltabel WHERE auto.auto_id=koppeltabel.auto_id";
 			$vriendnummer = $record["vriendnummer"];
 			$voornaam = $record["voornaam"];
 			$achternaam = $record["achternaam"];
-
-		
+	
 
 			echo "<tr></td><td>".$record["voornaam"]."</td><td>". $record["achternaam"]."</td>";
 
 			$sresult = mysqli_query($conn, $ssql) or die("Query ERROR: " . mysqli_error($conn) );
 	
 echo"<td>";
+
 	// show table with all records
 		while ( $record = mysqli_fetch_array($sresult) ) {
 			// read values of "Koppeltabel" record
@@ -46,7 +46,7 @@ echo "<form action='toonauto.php' method='POST' target='_blank'>";
 			$merk = $record["merk"];
 
 			echo "<input type='hidden' name='toonfoto' value='$auto_id'>";
-			echo "<input type='image' name='toonfoto' src='$fotopad' alt='Submit' style='height:75px' title='$fotonaam'/>";
+			echo "<input type='image' name='toonfoto' src='$fotopad' alt='Submit' style='height:75px; width:100px' title='$fotonaam'/>";
 			
 
 			echo "</form>";	
