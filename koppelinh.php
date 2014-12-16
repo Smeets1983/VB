@@ -2,7 +2,7 @@
 
 
 
-<table><th><h4>foto</th><th><h4>merk</th><th><h4>Voornaam</th><th><h4>achternaam</th><th><h4>beschrijving</th>
+<table><th><h4>Voornaam</th><th><h4>Achternaam</th>
 
 
 <?php
@@ -11,7 +11,7 @@ include("connectDB.php");
 include_once "forms/header.html";
 
 
-$sql = "SELECT * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnummer=vrienden.vriendnummer";
+$sql = "SELECT DISTINCT  * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnummer=vrienden.vriendnummer GROUP BY voornaam";
 
 
 		$result = mysqli_query($conn, $sql) or die("Query ERROR: " . mysqli_error($conn) );
@@ -24,14 +24,49 @@ $sql = "SELECT * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnummer=vriend
 			
 			$voornaam = $record["voornaam"];
 	
-			
-			$beschrijving = $record["beschrijving"];
-	
+	$achternaam = $record["achternaam"];
+
+		
+
+			echo "<tr></td><td>".$record["voornaam"]."</td><td>". $record["achternaam"];
+
+		}
+
+
+
+$sql = "SELECT * FROM auto,koppeltabel WHERE koppeltabel.auto_id=auto.auto_id";
+
+
+		$result = mysqli_query($conn, $sql) or die("Query ERROR: " . mysqli_error($conn) );
+
+	// show table with all records
+		while ( $record = mysqli_fetch_array($result) ) {
+			// read values of "Koppeltabel" record
+
 
 			
-			echo "<tr></td><td>".$record["voornaam"]."</td><td>". $record["achternaam"]."</td><td>".$record["beschrijving"]."</td><td>".$record["beschrijving"];
+echo "<form action='toonauto.php' method='POST' target='_blank'>";
 		
+
+			$fotopad = $record["fotopad"];
+			$fotonaam = $record["fotonaam"];
+		
+			$merk = $record["merk"];
+
+			echo "<input type='hidden' name='toonfoto' value='$auto_id'>";
+			echo "<td><input type='image' name='toonfoto' src='$fotopad' alt='Submit' style='height:75px' title='$fotonaam'/></td><td>";
+			
+
+			echo "</form>";	
 }
+
+
+
+
+
+
+
+		
 
 
 
