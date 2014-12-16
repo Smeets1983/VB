@@ -12,7 +12,7 @@ $sql = "SELECT * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnummer=vriend
 
 		$result = mysqli_query($conn, $sql) or die("Query ERROR: " . mysqli_error($conn) );
 
-	$oldIdVriend = 0;
+
 		while ( $record = mysqli_fetch_array($result) ) {
 			
 			$vriendnummer = $record["vriendnummer"];			
@@ -35,8 +35,6 @@ $sql = "SELECT * FROM auto,koppeltabel WHERE auto.auto_id=koppeltabel.auto_id";
 			$fotopad = $record["fotopad"];
 			$fotonaam = $record["fotonaam"];
 			$merk = $record["merk"];
-
-		
 
 			
 			
