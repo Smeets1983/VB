@@ -31,20 +31,20 @@ $sql = "SELECT * FROM auto,koppeltabel WHERE auto.auto_id=koppeltabel.auto_id";
 		while ( $record = mysqli_fetch_array($result) ) {
 		
 
-
-		
 			$auto_id = $record["auto_id"];
 			$fotopad = $record["fotopad"];
 			$fotonaam = $record["fotonaam"];
 			$merk = $record["merk"];
 
-					if ($vriendnummer != $oldIdVriend) {
+		
+
+			
 			
 			echo "<tr>";
 			echo "<td>".$record["voornaam"]."</td><td>". $record["achternaam"]."</td>";
-		}
+		
 
-			
+
 			echo "<form action='toonauto.php' method='POST' target='_blank'>";
 			echo "<td><input type='hidden' name='toonfoto' value='$auto_id'></td>";
 			echo "<td><input type='image' name='toonfoto' src='$fotopad' alt='Submit' style='height:75px' title='$fotonaam'/><td>";
@@ -53,8 +53,8 @@ $sql = "SELECT * FROM auto,koppeltabel WHERE auto.auto_id=koppeltabel.auto_id";
 
 			echo "</form>";	
 
-}
 
+}
 }
 
 
