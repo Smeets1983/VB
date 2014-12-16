@@ -11,7 +11,7 @@ include("connectDB.php");
 include_once "forms/header.html";
 
 
-$sql = "SELECT * FROM vrienden,koppeltabel,auto WHERE vrienden.vriendnummer=koppeltabel.vriendnummer AND auto.auto_id=koppeltabel.auto_id";
+$sql = "SELECT * FROM vrienden,koppeltabel WHERE koppeltabel.vriendnummer=vrienden.vriendnummer";
 
 
 		$result = mysqli_query($conn, $sql) or die("Query ERROR: " . mysqli_error($conn) );
@@ -20,19 +20,17 @@ $sql = "SELECT * FROM vrienden,koppeltabel,auto WHERE vrienden.vriendnummer=kopp
 		while ( $record = mysqli_fetch_array($result) ) {
 			// read values of "Koppeltabel" record
 			
-echo "<form action='toonauto.php' method='POST' target='_blank'>";
-			$auto_id = $record["auto_id"];
+
+			
 			$voornaam = $record["voornaam"];
-			$fotopad = $record["fotopad"];
-			$fotonaam = $record["fotonaam"];
+	
+			
 			$beschrijving = $record["beschrijving"];
-			$merk = $record["merk"];
+	
 
-			echo "<input type='hidden' name='toonfoto' value='$auto_id'>";
-			echo "<tr><td><input type='image' name='toonfoto' src='$fotopad' alt='Submit' style='height:75px' title='$fotonaam'/></td><td>".$record["merk"]."</td><td>". $record["auto_id"]."</td><td>".$record["achternaam"]."</td><td>".$record["beschrijving"];
-			echo "$auto_id";
-
-			echo "</form>";	
+			
+			echo "<tr></td><td>".$record["voornaam"]."</td><td>". $record["achternaam"]."</td><td>".$record["beschrijving"]."</td><td>".$record["beschrijving"];
+		
 }
 
 
