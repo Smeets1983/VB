@@ -29,7 +29,7 @@ include_once "forms/header.html";
 				<input type="password" name="wachtwoord" value="" /> 
 			</div>	
 			<input type="submit" value="inloggen" />
-				<a href="#">Aanmelden als nieuwe gebruiker</a>
+				<a href="registreer.php">Aanmelden als nieuwe gebruiker</a>
 			</div>	
 
 
