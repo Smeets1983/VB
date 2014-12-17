@@ -1,6 +1,4 @@
-<?php
-include_once "session.php";
-?>
+
 <?php
 //Haal header op
 include_once "forms/header.html";

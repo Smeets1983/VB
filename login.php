@@ -1,21 +1,43 @@
+
 <?php
-
 session_start()
-
 ?>
 
-<form action="" method="post">
-<label> naam </label>
-<input type="text" name="naam" value="..." /> 
-<input type="password" name="wachtwoord" value="..." /> 
-<input type="submit" value="inloggen" />
+<?php
+//Haal header op
+include_once "forms/header.html";
+?>
+
+
+ <hgroup>
+ <h2>Login pagina</h2>
+ <h3>Gebruik uw inloggegevens om in te loggen</h3>
+ </hgroup>
+ <p>Als u bent ingelogd kunt u vrienden en auto's toevoegen, aanpassen en verwijderen</p>
+ </article> 
+
+<div class="container">
+	<form action="" method="post">
+		
+			<label>email-adres</label>
+			<div>
+				<input type="text" name="naam" value="" /> 
+			</div>
+			<div>
+				<label>wachtwoord</label>
+			<div>	
+				<input type="password" name="wachtwoord" value="" /> 
+			</div>	
+			<input type="submit" value="inloggen" />
+				<a href="#">Aanmelden als nieuwe gebruiker</a>
+			</div>	
+
+
 </form>
 
 <?php
 
 include("connectDB.php");
-   print_r($_POST); 
-  //  echo "<p>naam: $_POST['naam']</p>";
 
 
 $naam="";
@@ -48,16 +70,13 @@ exit();
 
 		}
 		
-
-
-
-
 }
 }
 
+?>
 
+<?php
+//haal footer op
+include_once "forms/footer.html";
+?>
 
-
-
-
-    ?>

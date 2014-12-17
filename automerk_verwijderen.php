@@ -1,4 +1,6 @@
-
+<?php
+include_once "session.php";
+?>
 <?php
 //Ophalen inhoud van document
 include_once "forms/header.html";

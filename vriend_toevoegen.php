@@ -1,4 +1,7 @@
 <?php
+include_once "session.php";
+?>
+<?php
 include_once "forms/header.html";
 ?>
  <hgroup>
