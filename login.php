@@ -46,7 +46,7 @@ if (isset($_POST['naam']) ) {
 
 $wachtwoord="";
 if (isset($_POST['wachtwoord']) ) {
-        $wachtwoord=$_POST['wachtwoord']; 
+        $wachtwoord= md5($_POST['wachtwoord']); 
 
 $sql = "SELECT * FROM gebruikers WHERE naam='$naam' AND wachtwoord='$wachtwoord'";
 
