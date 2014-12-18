@@ -32,7 +32,6 @@ include_once "forms/header.html";
 				<a href="registreer.php">Aanmelden als nieuwe gebruiker</a>
 			</div>	
 
-
 </form>
 
 <?php
@@ -50,10 +49,9 @@ if (isset($_POST['wachtwoord']) ) {
 
 $sql = "SELECT * FROM gebruikers WHERE naam='$naam' AND wachtwoord='$wachtwoord'";
 
-
 		$result = mysqli_query($conn, $sql) or die("Query ERROR: " . mysqli_error($conn) );
-
 		$aantal=mysqli_num_rows( $result );
+		
 
 		echo $aantal;
 

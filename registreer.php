@@ -1,4 +1,6 @@
-
+<?php
+echo "voorform";
+?>
 
  <div class="container">
 	<form action="" method="post">
@@ -18,7 +20,7 @@
 			<div>	
 				<input name="wachtwoord"type="password" id="wachtwoord" value="" /> 
 			</div>	
-			<input type="submit" value="registreer" />
+			<input name= "submitted" type="submit" value="registreer" />
 			</div>	
 </form>
 
@@ -28,10 +30,11 @@
   
 include("connectDB.php");
 
-                   //Als door bovenstaande regels is gelopen voer onderstaande script uit
-	if (isset($_POST['submitted'])){
-			 
-    if ($_POST['naam'] == "") { 
+print_r($_POST);  
+
+               //Als door bovenstaande regels is gelopen voer onderstaande script uit
+if (isset($_POST['submitted'])){
+    if ($_POST['fname'] == "") { 
         $error = "Naam is niet ingevuld"; 
     } 
     if ($_POST['email'] == "") { 
@@ -40,36 +43,34 @@ include("connectDB.php");
     if ($_POST['wachtwoord'] == "") { 
         $error .= "wachtwoord is niet ingevuld"; 
     } 
+echo "kkk";
+
+	if (!isset($error) && isset($_POST['submitted'])) {
+		include("connectDB.php");
+		$fname      =  ($_POST['fname']); 
+		$email = 		($_POST['email']); 
+		$wachtwoord =	($_POST['wachtwoord']); 
+		$wachtwoordmd5 = md5 ($wachtwoord);
 
 
-if (!isset($error) && isset($_POST['submitted'])) {
+		$sqlinsert = "INSERT INTO gebruikers (naam,email,wachtwoord) VALUES('$fname', '$email','$wachtwoordmd5')";
+		$query = mysql_query($sqlinsert);
 
-include("connectDB.php");
-$fname      =  ($_POST['fname']); 
-$email = 		($_POST['email']); 
-$wachtwoord =	($_POST['wachtwoord']); 
-$wachtwoordmd5 = md5 ($wachtwoord);
+		if (!mysqli_query($conn, $sqlinsert)){
+			die('error inserting new record');
+		}
 
+	    echo 'Je gegevens zijn succesvol in de database geplaatst'; 
 
-$sqlinsert = "INSERT INTO gebruikers (naam,email,wachtwoord) VALUES('$fname', '$email','$wachtwoordmd5')";
-$query = mysql_query($sqlinsert);
+	}
 
-if (!mysqli_query($conn, $sqlinsert)){
-die('error inserting new record');
+	if(isset($error)) {                            ######## anders doet hij dit ######## 
+		echo "Gelieve alle formuliervelden netjes in te vullen !<BR /><BR />"; 
+		echo "<FONT COLOR=\"#FF0000\">".$error."</FONT>"; 
+	} 
+		
 }
 
-    echo 'Je gegevens zijn succesvol in de database geplaatst'; 
-
-if(isset($error)) {                            ######## anders doet hij dit ######## 
-    echo "Gelieve alle formuliervelden netjes in te vullen !<BR /><BR />"; 
-        echo "<FONT COLOR=\"#FF0000\">".$error."</FONT>"; 
-} 
-else {      
-        
-}
-
-}
-}
 
 include_once "forms/footer.html";
 ?>
