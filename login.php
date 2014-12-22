@@ -55,7 +55,7 @@ $sql = "SELECT * FROM gebruikers WHERE naam='$naam' AND wachtwoord='$wachtwoord'
 
 		echo $aantal;
 
-		if($aantal==1)	{
+		if($aantal >=1)	{
 
 			echo "gelukt";
 
