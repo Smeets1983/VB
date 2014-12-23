@@ -1,12 +1,11 @@
-
-
 <?php
+	session_start(); 
 	include_once "forms/header.html";
+
 ?>
 <hgroup>
  <h2>Registreer als nieuwe gebruiker</h2>
  <h3>Vul uw gegevens in en registreer als nieuwe gebruiker.</h3>
- 
 
  <div class="container">
 	<form action="" method="post">
@@ -29,30 +28,59 @@
 				<div>
 					<input name= "submitted" type="submit" value="registreer" />
 				</div>	
-	</form>
+ <div>
+  <?php
+  // show captcha HTML using Securimage::getCaptchaHtml()
+  require_once 'securimage/securimage.php';
+  $options = array();
+  $options['input_name'] = 'captcha_code'; // change name of input element for form post
+  $options['input_text'] = "Type de beveilingscode";
+  $options['show_audio_button'] = false;
+  
+  echo Securimage::getCaptchaHtml($options);
+ ?>
+ </div>
+
+</form>
+
 
 <?php 
 	include("connectDB.php");
 
-	//print_r($_POST);  
+
+include_once $_SERVER['DOCUMENT_ROOT'] . '/vriendenboek/securimage/securimage.php';
+
+$securimage = new Securimage();
+
+	
          
 	if (isset($_POST['submitted'])){
 	    if ($_POST['fname'] == "") { 
-	        $error = "Naam is niet ingevuld"; 
+	        $error = "Naam is niet ingevuld <br>"; 
 	    } 
 	    if ($_POST['email'] == "") { 
-	        $error .= "email is niet ingevuld"; 
+	        $error .= "email is niet ingevuld <br>"; 
 	    } 
 	    if ($_POST['wachtwoord'] == "") { 
-	        $error .= "wachtwoord is niet ingevuld"; 
+	        $error .= "wachtwoord is niet ingevuld <br>"; 
 	    } 
+
+	
+		if ($securimage->check($_POST['captcha_code']) == false) {
+
+  		echo "The security code entered was incorrect.<br /><br />";
+  		echo "Please go <a href='javascript:history.go(-1)'>back</a> and try again.";
+exit;
+print_r($_POST);
+
+		}
 	//echo "testcode";
 
 		if (!isset($error) && isset($_POST['submitted'])) {
 			include("connectDB.php");
-			$fname      =  ($_POST['fname']); 
-			$email = 		($_POST['email']); 
-			$wachtwoord =	($_POST['wachtwoord']); 
+			$fname      =  @($_POST['fname']); 
+			$email = 		@($_POST['email']); 
+			$wachtwoord =	@($_POST['wachtwoord']); 
 			$wachtwoordmd5 = md5 ($wachtwoord);
 
 
@@ -68,12 +96,12 @@
 		}
 
 
-		if(isset($error)) {                            ######## anders doet hij dit ######## 
+		if(isset($error)) {                            
 			echo "Gelieve alle formuliervelden netjes in te vullen !<BR /><BR />"; 
 			echo "<FONT COLOR=\"#FF0000\">".$error."</FONT>"; 
 		} 
-			
-	}
+
+}
 
 		if (isset($_POST['submitted'])){
 

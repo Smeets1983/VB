@@ -52,7 +52,6 @@ $sql = "SELECT * FROM gebruikers WHERE naam='$naam' AND wachtwoord='$wachtwoord'
 		$result = mysqli_query($conn, $sql) or die("Query ERROR: " . mysqli_error($conn) );
 		$aantal=mysqli_num_rows( $result );
 		
-
 		echo $aantal;
 
 		if($aantal >=1)	{
@@ -62,18 +61,20 @@ $sql = "SELECT * FROM gebruikers WHERE naam='$naam' AND wachtwoord='$wachtwoord'
 			$_SESSION['naam'] = $naam;
 			$_SESSION['ingelogd'] = 1;
 
+
+	print_r($naam);  
+
+	echo "gelukt";
+
+
 header("Location: index.php");
 exit();
 
-
 		}
-		
+	
 }
 }
 
-?>
-
-<?php
 //haal footer op
 include_once "forms/footer.html";
 ?>
