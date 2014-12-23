@@ -12,12 +12,12 @@
 		
 			<label>Voornaam</label>
 				<div>	
-					<input name="fname" type="text" id="fname">
+					<input name="fname" type="text" id="fname" value="..."/>
 				</div>
 
 			<label>email-adres</label>
 				<div>
-					<input name= "email"type="text" id="email" value="" /> 
+					<input name= "email"type="text" id="email" value="..." /> 
 				</div>
 			
 			<label>wachtwoord</label>

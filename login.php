@@ -62,6 +62,7 @@ $sql = "SELECT * FROM gebruikers WHERE naam='$naam' AND wachtwoord='$wachtwoord'
 			$_SESSION['ingelogd'] = 1;
 
 
+
 	print_r($naam);  
 
 	echo "gelukt";
