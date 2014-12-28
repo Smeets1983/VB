@@ -6,7 +6,6 @@ include_once "forms/header.html";
  <h3>Hier ziet u een actueel overzicht van uw vrienden</h3>
  
 <?php
-
 include("connectDB.php");
 include("databaseinhv.php");
 include_once "forms/footer.html";

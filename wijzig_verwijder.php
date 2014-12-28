@@ -1,11 +1,8 @@
 
 <?php
 include_once "session.php";
-?>
-<?php
 //Ophalen inhoud van document
 include_once "forms/header.html";
-
 ?>
 
 <hgroup>
@@ -43,37 +40,33 @@ include_once "forms/header.html";
 <!--vervolgens wordt het formulier weergegeven met daarin de bestaande gegevens-->
 
 		<form action="" method="POST">
-<table width="400" border="0" cellspacing="1" cellpadding="2">
-			<tr>
-			<td width="100">Voornaam</td>
-			<td><input required type="text" name="voornaam" value="<?php echo $voornaam ?>" ></td>
-			</tr>
+			<table width="400" border="0" cellspacing="1" cellpadding="2">
+				<tr>
+					<td width="100">Voornaam</td>
+					<td><input required type="text" name="voornaam" value="<?php echo $voornaam ?>" ></td>
+				</tr>
 
-			<tr>
-			<td width="100">Achternaam</td>
-			<td><input required type="text" name="achternaam" value="<?php echo $achternaam ?>" ></td>
-			</tr>
+				<tr>
+					<td width="100">Achternaam</td>
+					<td><input required type="text" name="achternaam" value="<?php echo $achternaam ?>" ></td>
+				</tr>
 
-			<tr>
-			<td width="100">Beschrijving</td>
-			<td><textarea required name="beschrijving" rows="10" cols="30"><?php echo $beschrijving ?></textarea></td>
-			</tr>
+				<tr>
+					<td width="100">Beschrijving</td>
+					<td><textarea required name="beschrijving" rows="10" cols="30"><?php echo $beschrijving ?></textarea></td>
+				</tr>
 
-			<input required type="hidden" name="id" value="<?php echo $id ?>" >
-			
-
-			<tr>
-			<td width="100">Pas aan</td>
-			<td><input type="submit" name="pas_aan" value="aanpassen"></td>
-			</tr>		
-</table>
+					<input required type="hidden" name="id" value="<?php echo $id ?>" >
+				<tr>
+				<td width="100">Pas aan</td>
+				<td><input type="submit" name="pas_aan" value="aanpassen"></td>
+				</tr>		
+			</table>
 		</form>
  <?php
  include("forms/ckeditor.php");
  ?> 
-
 <?php
-
 }
 
      //Als post geset wordt 
@@ -87,25 +80,16 @@ include_once "forms/header.html";
 
 		//Bovenstaande variabelen woren in sql query geset
 		$query = "UPDATE vrienden 
-					SET voornaam='$voornaam', achternaam='$achternaam', beschrijving='$beschrijving'
-					WHERE vriendnummer = '$id' ";
-		
+		SET voornaam='$voornaam', achternaam='$achternaam', beschrijving='$beschrijving' WHERE vriendnummer = '$id' ";
 		//Controleer verbinding en sql statement
 		$result = mysqli_query($conn, $query) or die("Query ERROR: " . mysqli_error($conn) );
 	}
-
-
-?>
-
-<?php
 
 	//Als knop verwijder wordt geset, voer ondertaande variabelen uit nmet als id $vriendnummer
 	if ( isset($_POST["vr_verwijder"]) ) {
 	
 		$vriendnummer = $_POST["id"];
-
 		$query = "DELETE FROM vrienden WHERE vriendnummer = '$vriendnummer' ";
-	
 		$result = mysqli_query($conn, $query) or die("Query ERROR: " . mysqli_error($conn) );
 	}
 
